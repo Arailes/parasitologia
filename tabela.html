@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parasitologia - Memorex Interativo Avançado</title>
+    <title>Parasitologia - Memorex Interativo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            background-color: #003300;
         }
         h1 {
-            color: #333;
+            color: #3399ff;
             text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 20px;
         }
         .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            max-width: 900px;
+            margin: 0 auto;
         }
         .card {
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.2s;
-            cursor: pointer;
+            margin-bottom: 15px;
             border: 1px solid #ddd;
-        }
-        .card:hover {
-            transform: translateY(-5px);
         }
         .card-header {
             background-color: #007bff;
@@ -38,9 +34,19 @@
             padding: 15px;
             font-weight: bold;
             text-align: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+        }
+        .card-header:hover {
+            background-color: #0056b3;
         }
         .card-body {
+            display: none;
             padding: 15px;
+        }
+        .card.active .card-body {
+            display: block;
         }
         .info-item {
             margin-bottom: 10px;
@@ -56,28 +62,36 @@
             display: block;
         }
         .info-content {
-            display: none;
             color: #777;
             margin-top: 5px;
-        }
-        .visible .info-content {
-            display: block;
+            font-size: 0.9em;
         }
         .credits {
             text-align: center;
             margin-top: 20px;
             color: #999;
+            font-size: 0.8em;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1>Parasitologia - Memorex Avançado</h1>
+    <h1>Parasitologia Médica - Memorex PR1 - IDOMED</h1>
 
     <div class="container">
 
-        <div class="card" onclick="toggleContent(this)">
-            <div class="card-header">Ascaridíase</div>
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">Ascaridíase</div>
             <div class="card-body">
                 <div class="info-item">
                     <span class="info-label">Agente Etiológico:</span>
@@ -122,8 +136,8 @@
             </div>
         </div>
 
-        <div class="card" onclick="toggleContent(this)">
-            <div class="card-header">Enterobíase</div>
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">Enterobíase</div>
             <div class="card-body">
                 <div class="info-item">
                     <span class="info-label">Agente Etiológico:</span>
@@ -143,7 +157,7 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">Ciclo Biológico:</span>
-                    <span class="info-content">Monoxênico. A fêmea grávida migra para a região perianal para depositar ovos à noite, o que causa o prurido. Autoinfecção e heteroinfecção são comuns pela ingestão dos ovos.</span>
+                    <span class="info-content">Monoxênico, as fêmeas grávidas migram para a região perianal para depositar ovos à noite, o que causa o prurido. Autoinfecção e heteroinfecção são comuns pela ingestão dos ovos.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Epidemiologia:</span>
@@ -151,7 +165,7 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">Transmissão:</span>
-                    <span class="info-content">Ingestão de ovos que contaminam mãos, alimentos e roupas de cama.</span>
+                    <span class="info-content">Ingestão de ovos que contaminam mãos, alimentos, roupas de cama. Autoinfecção e heteroinfecção são comuns.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Sintomas:</span>
@@ -159,7 +173,7 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">Tratamento:</span>
-                    <span class="info-content">Albendazol ou Mebendazol para o paciente e contatos.</span>
+                    <span class="info-content">Albendazol, Mebendazol para o paciente e contatos.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Profilaxia:</span>
@@ -168,8 +182,8 @@
             </div>
         </div>
 
-        <div class="card" onclick="toggleContent(this)">
-            <div class="card-header">Tricuríase</div>
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">Tricuríase</div>
             <div class="card-body">
                 <div class="info-item">
                     <span class="info-label">Agente Etiológico:</span>
@@ -197,7 +211,7 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">Transmissão:</span>
-                    <span class="info-content">Ingestão de ovos maduros em solo ou alimentos contaminados.</span>
+                    <span class="info-content">Ingestão de ovos maduros em solo ou alimentos.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Sintomas:</span>
@@ -214,12 +228,12 @@
             </div>
         </div>
 
-        <div class="card" onclick="toggleContent(this)">
-            <div class="card-header">Ancilostomose</div>
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">Ancilostomose</div>
             <div class="card-body">
                 <div class="info-item">
                     <span class="info-label">Agente Etiológico:</span>
-                    <span class="info-content">Ancylostoma duodenale e Necator americanus</span>
+                    <span class="info-content">Ancylostoma duodenale e Necator americanus.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Classificação:</span>
@@ -235,15 +249,15 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">Ciclo Biológico:</span>
-                    <span class="info-content">Penetração da larva filariforme na pele (geralmente pelos pés). As larvas migram pelos vasos sanguíneos até os pulmões e depois, por deglutição, chegam ao intestino, onde se tornam adultas.</span>
+                    <span class="info-content">Penetração da larva filariforme na pele (principalmente pelos pés). As larvas migram pelos vasos sanguíneos até os pulmões e depois, por deglutição, chegam ao intestino, onde se tornam adultas.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Epidemiologia:</span>
-                    <span class="info-content">É endêmica em áreas tropicais, principalmente em populações com acesso limitado a saneamento básico. É uma das principais causas de anemia por deficiência de ferro.</span>
+                    <span class="info-content">É endêmica em áreas tropicais com saneamento precário e é uma das principais causas de anemia.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Transmissão:</span>
-                    <span class="info-content">Penetração da larva filariforme na pele (principalmente pelos pés).</span>
+                    <span class="info-content">Penetração da larva filariforme na pele.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Sintomas:</span>
@@ -260,12 +274,12 @@
             </div>
         </div>
 
-        <div class="card" onclick="toggleContent(this)">
-            <div class="card-header">Estrongiloidíase</div>
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">Estrongiloidíase</div>
             <div class="card-body">
                 <div class="info-item">
                     <span class="info-label">Agente Etiológico:</span>
-                    <span class="info-content">Strongyloides stercoralis</span>
+                    <span class="info-content">Strongyloides stercoralis.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Classificação:</span>
@@ -306,12 +320,12 @@
             </div>
         </div>
 
-        <div class="card" onclick="toggleContent(this)">
-            <div class="card-header">Filariose (Linfática)</div>
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">Filariose (Linfática)</div>
             <div class="card-body">
                 <div class="info-item">
                     <span class="info-label">Agente Etiológico:</span>
-                    <span class="info-content">Wuchereria bancrofti</span>
+                    <span class="info-content">Wuchereria bancrofti.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Classificação:</span>
@@ -352,12 +366,12 @@
             </div>
         </div>
 
-        <div class="card" onclick="toggleContent(this)">
-            <div class="card-header">Esquistossomose</div>
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">Esquistossomose</div>
             <div class="card-body">
                 <div class="info-item">
                     <span class="info-label">Agente Etiológico:</span>
-                    <span class="info-content">Schistosoma mansoni</span>
+                    <span class="info-content">Schistosoma mansoni.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Classificação:</span>
@@ -397,13 +411,13 @@
                 </div>
             </div>
         </div>
-                
-        <div class="card" onclick="toggleContent(this)">
-            <div class="card-header">Teníase</div>
+       
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">Teníase</div>
             <div class="card-body">
                 <div class="info-item">
                     <span class="info-label">Agente Etiológico:</span>
-                    <span class="info-content">Taenia solium (porco) e Taenia saginata (boi).</span>
+                    <span class="info-content">Taenia solium e Taenia saginata.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Classificação:</span>
@@ -423,11 +437,11 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">Epidemiologia:</span>
-                    <span class="info-content">Frequente em regiões onde há o consumo de carne crua ou malcozida e saneamento básico deficiente.</span>
+                    <span class="info-content">Frequente em áreas onde há o consumo de carne crua ou malcozida e falta de inspeção sanitária.</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Transmissão:</span>
-                    <span class="info-content">Ingestão de carne de porco (T. solium) ou boi (T. saginata) crua ou malcozida contendo larvas.</span>
+                    <span class="info-content">Ingestão de carne de porco (T. solium) ou boi (T. saginata) crua ou malcozida, contendo larvas (cisticercos).</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Sintomas:</span>
@@ -444,8 +458,8 @@
             </div>
         </div>
 
-        <div class="card" onclick="toggleContent(this)">
-            <div class="card-header">Cisticercose</div>
+        <div class="card">
+            <div class="card-header" onclick="toggleCard(this)">Cisticercose</div>
             <div class="card-body">
                 <div class="info-item">
                     <span class="info-label">Agente Etiológico:</span>
@@ -493,12 +507,13 @@
     </div>
 
     <div class="credits">
-        <p>Baseado nos Slides de Parasitologia Médica fornecida para estudo (Arailes, aluno IDOMED Quixada T6A.</p>
+        <p>Baseado nos Slides de Parasitologia Médica fornecida para estudo (Arailes, aluno IDOMED Quixada T6A).</p>
     </div>
 
     <script>
-        function toggleContent(card) {
-            card.classList.toggle('visible');
+        function toggleCard(header) {
+            const card = header.parentElement;
+            card.classList.toggle('active');
         }
     </script>
 
